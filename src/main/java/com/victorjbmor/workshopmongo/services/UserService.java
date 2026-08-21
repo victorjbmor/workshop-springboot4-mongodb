@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.victorjbmor.workshopmongo.domain.User;
+import com.victorjbmor.workshopmongo.dto.UserDTO;
 import com.victorjbmor.workshopmongo.repository.UserRepository;
 import com.victorjbmor.workshopmongo.services.exception.ObjectNotFoundException;
 
@@ -29,5 +30,13 @@ public class UserService {
 	        throw new ObjectNotFoundException("Objeto não encontrado");
 	    }
 	    return user.get();
+	}
+	
+	public User insert(User obj) {
+		return repo.insert(obj);
+	}
+	
+	public User fromDTO(UserDTO objDto) {
+		return new User(objDto.getId(),objDto.getName(),objDto.getEmail());
 	}
 }
